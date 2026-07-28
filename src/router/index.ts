@@ -1,0 +1,111 @@
+import { createRouter, createWebHistory } from 'vue-router'
+// 使用动态导入实现路由懒加载
+const ShareHomeView = () => import('@/views/ShareHomeView.vue')
+const StudyMethodsView = () => import('@/views/StudyMethodsView.vue')
+const CS408View = () => import('@/views/CS408View.vue')
+const CSLearningView = () => import('@/views/CSLearning.vue')
+const DSLearningView = () => import('@/views/DSLearning.vue')
+const NetworkLearningView = () => import('@/views/NetworkLearning.vue')
+const OSLearningView = () => import('@/views/OSLearning.vue')
+const FeynmanLearning = () => import('@/components/FeynmanLearning.vue')
+const MathView = () => import('@/views/MathView.vue')
+const MathQuickCardsView = () => import('@/views/MathQuickCardsView.vue')
+const UniversitiesView = () => import('@/views/UniversitiesView.vue')
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: ShareHomeView
+    },
+    {
+      path: '/study-methods',
+      name: 'study-methods',
+      component: StudyMethodsView,
+      meta: { title: '学习方法' }
+    },
+    {
+      path: '/cs408',
+      name: 'cs408',
+      component: CS408View,
+      meta: { title: '408计算机' }
+    },
+    {
+      path: '/cs408/composition',
+      name: 'cs-composition',
+      component: CSLearningView,
+      meta: {
+        title: '计算机组成原理',
+        subject: '计算机组成原理'
+      }
+    },
+    {
+      path: '/cs408/datastructure',
+      name: 'cs-datastructure',
+      component: DSLearningView,
+      meta: {
+        title: '数据结构',
+        subject: '数据结构'
+      }
+    },
+    {
+      path: '/cs408/network',
+      name: 'cs-network',
+      component: NetworkLearningView,
+      meta: {
+        title: '计算机网络',
+        subject: '计算机网络'
+      }
+    },
+    {
+      path: '/cs408/os',
+      name: 'cs-os',
+      component: OSLearningView,
+      meta: {
+        title: '操作系统',
+        subject: '操作系统'
+      }
+    },
+    {
+      path: '/cs408/feynman',
+      name: 'cs408-feynman',
+      component: FeynmanLearning,
+      meta: {
+        title: '费曼学习法'
+      }
+    },
+    {
+      path: '/math',
+      name: 'math',
+      component: MathView,
+      meta: { title: '数学一知识体系' }
+    },
+    {
+      path: '/math/detail',
+      name: 'math-detail',
+      component: MathView,
+      meta: { title: '数学一知识体系' }
+    },
+    {
+      path: '/math/quickcards',
+      name: 'math-quickcards',
+      component: MathQuickCardsView,
+      meta: { title: '速查卡片' }
+    },
+    {
+      path: '/universities',
+      name: 'universities',
+      component: UniversitiesView,
+      meta: { title: '院校查询' }
+    },
+    // 兼容旧链接：未匹配路由重定向到首页
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
+    }
+  ]
+})
+
+export default router

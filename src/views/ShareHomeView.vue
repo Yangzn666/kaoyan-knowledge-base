@@ -1,0 +1,241 @@
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const modules = [
+  {
+    icon: '📐',
+    title: '数学一知识体系',
+    desc: '高等数学 · 线性代数 · 概率统计，章节化知识点梳理 + 配图 + 题型识别决策树',
+    tag: '高数 / 线代 / 概率',
+    route: '/math/detail',
+    color: '#16345c'
+  },
+  {
+    icon: '📇',
+    title: '数学速查卡片',
+    desc: '公式与定理速查，翻牌自测，考前快速过一遍核心结论',
+    tag: '公式 / 定理',
+    route: '/math/quickcards',
+    color: '#0e7490'
+  },
+  {
+    icon: '💻',
+    title: '408 计算机',
+    desc: '数据结构 · 组成原理 · 操作系统 · 计算机网络，知识点梳理 + 考频地图 + 费曼学习法',
+    tag: '数据结构 / 计组 / OS / 网络',
+    route: '/cs408',
+    color: '#409EFF'
+  },
+  {
+    icon: '🧠',
+    title: '学习方法',
+    desc: '各科目强化期策略、刷题与错题复盘方法、费曼学习法与思维导图法',
+    tag: '方法论',
+    route: '/study-methods',
+    color: '#7c3aed'
+  },
+  {
+    icon: '🏫',
+    title: '院校查询',
+    desc: '11408 考研院校数据库：历年分数线、报录比、招生名额与科目变更',
+    tag: '择校参考',
+    route: '/universities',
+    color: '#b45309'
+  }
+]
+
+function go(route: string) {
+  router.push(route)
+}
+</script>
+
+<template>
+  <div class="share-home">
+    <header class="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-glow"></div>
+      <div class="hero-inner">
+        <span class="hero-kicker">STUDY · KNOWLEDGE · BASE</span>
+        <h1 class="hero-title">考研知识<span class="gold">资料库</span></h1>
+        <p class="hero-sub">数学一 · 408 计算机 · 学习方法 · 院校数据 —— 知识点整理与备考参考</p>
+      </div>
+    </header>
+
+    <section class="module-grid">
+      <div
+        v-for="m in modules"
+        :key="m.route"
+        class="module-card"
+        :style="{ '--accent': m.color }"
+        @click="go(m.route)"
+      >
+        <div class="module-icon">{{ m.icon }}</div>
+        <div class="module-body">
+          <h3>{{ m.title }}</h3>
+          <p>{{ m.desc }}</p>
+          <span class="module-tag">{{ m.tag }}</span>
+        </div>
+        <div class="module-arrow">→</div>
+      </div>
+    </section>
+
+    <footer class="page-note">
+      <p>内容仅供学习交流，知识点以官方教材与最新考纲为准。</p>
+    </footer>
+  </div>
+</template>
+
+<style scoped>
+.share-home {
+  --font-mono: 'JetBrains Mono', monospace;
+  --ink: #1f2d3d;
+  --muted: #5b6b7f;
+  --gold: #ffc53d;
+  --navy-deep: #0d2137;
+  --navy: #16345c;
+  --line: #e4ebf3;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 0 40px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 60%, #1e4576 100%);
+  border-radius: 14px;
+  padding: 46px 40px 38px;
+  margin-bottom: 28px;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+}
+.hero-glow {
+  position: absolute;
+  top: -70%;
+  right: -8%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(255,197,61,0.14) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+.hero-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.hero-title {
+  font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 10px 0 8px;
+  letter-spacing: 0.02em;
+}
+.hero-title .gold {
+  color: var(--gold);
+}
+.hero-sub {
+  color: #a8bdd4;
+  font-size: 0.96rem;
+  letter-spacing: 0.05em;
+  line-height: 1.7;
+}
+
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+}
+.module-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 12px rgba(13, 33, 55, 0.05);
+}
+.module-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(13, 33, 55, 0.12);
+  border-color: var(--accent);
+}
+.module-icon {
+  font-size: 1.9rem;
+  line-height: 1;
+  flex: none;
+}
+.module-body {
+  flex: 1;
+  min-width: 0;
+}
+.module-body h3 {
+  margin: 0 0 6px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.module-body p {
+  margin: 0 0 10px;
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.module-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, #fff);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, #fff);
+  border-radius: 999px;
+  padding: 2px 10px;
+  letter-spacing: 0.03em;
+}
+.module-arrow {
+  flex: none;
+  color: #c3cede;
+  font-size: 1.2rem;
+  align-self: center;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.module-card:hover .module-arrow {
+  transform: translateX(4px);
+  color: var(--accent);
+}
+
+.page-note {
+  margin-top: 30px;
+  text-align: center;
+}
+.page-note p {
+  font-size: 0.8rem;
+  color: #9aa7b8;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 32px 22px 28px;
+  }
+  .module-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
