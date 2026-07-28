@@ -35,6 +35,13 @@ const studyMethods = {
       { title: '一本保本两本血赚', desc: '千万不要要求自己把所有习题集做光。做完2本后应总结做题思路、形成自己的方法，把零散知识整合起来，进入冲刺而非继续买新题。', star: '⭐⭐⭐⭐⭐' },
       { title: '真题为王', desc: '真题反映命题规律和趋势，至少刷3遍。一遍按年份适应节奏，二遍按题型总结规律，三遍重做错题查缺补漏。', star: '⭐⭐⭐⭐⭐' }
     ],
+    toolkit: [
+      { icon: '🗣️', title: '费曼讲解法', when: '学完一章 / 做错题后', steps: ['合上书，假装给一个零基础的同学讲这个定理或题型', '讲卡壳的地方就是没真懂的地方，回去重看对应内容', '用大白话而不是术语，能让外行听懂才算过关', '进阶：把讲解写成文字发给AI，让它挑逻辑漏洞'] },
+      { icon: '🔁', title: '错题重做法', when: '每天 / 每章结束', steps: ['错题不抄本，只标记页码题号（抄题是伪勤奋）', '次日看新课前，独立重做昨日错题，不看答案', '还错的再标记，周末集中三刷，直到全对', '每题问自己：为什么错？正确思路？下次怎么识别？'] },
+      { icon: '🧮', title: '计算天天练', when: '每天15分钟', steps: ['三大计算（极限/求导/积分）每天各练2-3题', '限时训练，算到底，不许"思路会了就跳过"', '草稿纸写工整，方便回查具体哪一步出错', '计算力靠每天积累，考场要算到最后一刻'] },
+      { icon: '🗺️', title: '思维导图法', when: '每章学完', steps: ['合上书凭记忆画本章知识框架，画不出=没掌握', '标注知识点间的联系、易混点和适用条件', '每学完一章就把新内容挂到已有导图上', '考前只看导图，快速过完整知识体系'] },
+      { icon: '🤖', title: 'AI辅助学习', when: '卡壳 / 想检验时', ai: true, steps: ['概念不懂：让AI用生活例子解释（如"用排队讲极限"）', '错题不会：让AI讲思路，而不是直接抄答案', '让AI出同类型变式题，检验是否真的掌握', '把费曼讲解发给AI，让它指出你哪里讲错了'] }
+    ],
     phases: [
       { name: '基础入门', time: '2025.5-12月', duration: '8个月',
         goals: ['完成三门课第一轮系统学习', '理解基本概念和定理（不只记公式，要懂推导）', '掌握三大计算（极限/求导/积分）', '每章画思维导图建立框架'],
@@ -118,6 +125,13 @@ const studyMethods = {
       { title: '真题为王', desc: '408真题重复率高，至少刷3遍，每题都要搞懂。有些题会换个形式再考。', star: '⭐⭐⭐⭐⭐' },
       { title: '王道为主', desc: '王道四本书是408备考的核心资料，覆盖90%以上考点，必须吃透。', star: '⭐⭐⭐⭐⭐' }
     ],
+    toolkit: [
+      { icon: '🧱', title: '知识体系搭建法', when: '每章 / 跨科联系', steps: ['先认"积木"：把单科知识点逐个弄懂', '再"拼接木"：找跨科联系（如计组Cache↔OS页面置换）', '每章学完画思维导图，把新节点挂到知识网络上', '四门课交叉学习，用联系对抗遗忘'] },
+      { icon: '📝', title: '大题模板法', when: '强化期', steps: ['每类大题总结固定解题框架（如PV操作四步走）', '听完网课一个题型，立刻做真题对应题检验', '把模板写成自己的话，不要死记硬背', '算法题写注释说明思路，代码不完整也能拿分'] },
+      { icon: '📊', title: '真题三刷法', when: '9月起', steps: ['一遍按年份做，适应考试节奏和风格', '二遍按题型分类，总结高频考点和命题套路', '三遍重做错题，408真题重复率高，吃透必涨分', '选择题控制80分钟内，留时间给综合题'] },
+      { icon: '🗣️', title: '费曼讲解法', when: '学完一章 / 错题后', steps: ['用自己的话把知识点讲出来（如"什么是死锁"）', '讲不清=没真懂，换个问法就不会说明没理解', '重点讲"为什么"而不是"是什么"', '把讲解发给AI或同学，让对方挑毛病'] },
+      { icon: '🤖', title: 'AI辅助学习', when: '概念抽象时', ai: true, steps: ['抽象概念（如虚拟内存、TCP拥塞控制）让AI画图/举例子', '让AI把算法题思路一步步讲给你听', '让AI出同考点的选择题变式检验', '用AI快速查证细节，但结论以王道书为准'] }
+    ],
     phases: [
       { name: '基础入门', time: '2025.5-2026.6', duration: '13个月',
         goals: ['完成四门课第一轮学习', '理解基本概念和原理', '建立知识体系', '完成王道课后习题'],
@@ -142,9 +156,10 @@ const studyMethods = {
     ],
     teacherComparison: [
       { name: '王道团队', style: '408权威，书籍和视频质量高，强化课"骚图"串联知识点', rating: '⭐⭐⭐⭐⭐', bestFor: '全程核心' },
+      { name: '袁春风', style: '南京大学教授，计组讲得深入浅出，配套《计算机系统基础》', rating: '⭐⭐⭐⭐⭐', bestFor: '计算机组成原理' },
+      { name: '蒋炎岩（jyy）', style: '南京大学，操作系统并发/PV操作讲得透彻，专治理解难点', rating: '⭐⭐⭐⭐⭐', bestFor: '操作系统' },
       { name: '湖科大教书匠', style: '计网讲得清晰，补充王道不足', rating: '⭐⭐⭐⭐', bestFor: '计网专项' },
-      { name: 'Beokayy', style: 'B站UP主，讲解通俗易懂', rating: '⭐⭐⭐⭐', bestFor: '辅助学习' },
-      { name: '就是氧气', style: 'B站UP主，笔记整理好', rating: '⭐⭐⭐⭐', bestFor: '笔记参考' }
+      { name: '中科大郑烇', style: '《计算机网络：自顶向下方法》配套课，计网经典', rating: '⭐⭐⭐⭐', bestFor: '计网专项' }
     ],
     commonMistakes: [
       { mistake: '开始太晚', consequence: '408内容多后期压力大', solution: '尽早开始，至少提前1年' },
@@ -191,6 +206,13 @@ const studyMethods = {
       { title: '真题是关键', desc: '英语没有模拟题只有真题，真题至少刷3遍。模拟题质量参差不齐，别浪费时间。', star: '⭐⭐⭐⭐⭐' },
       { title: '作文靠模板', desc: '提前准备自己的模板，不要考前临时抱佛脚。形成自己的框架，不要直接背别人的。', star: '⭐⭐⭐⭐' }
     ],
+    toolkit: [
+      { icon: '📖', title: '精读五步法', when: '每天1篇真题阅读', steps: ['通读全文，计时18-20分钟，不硬用技巧', '逐句翻译，长难句拆分主干和修饰', '分析题目：定位原文→对比选项→找出干扰项错法', '总结错题：张冠李戴/主语错误/描述错误各归一类', '背诵好句，积累写作素材'] },
+      { icon: '🔤', title: '单词艾宾浩斯法', when: '每天30分钟', steps: ['每天100个是底线，断了要2倍补回来', '用APP（不背单词/墨墨）自动安排复习曲线', '结合真题语境记，重点关注熟词僻义', '阅读中不认识的词单独记入生词本'] },
+      { icon: '✂️', title: '长难句拆解法', when: '每天3-5句', steps: ['先找主干（主谓宾），再看修饰（定状补）', '标出连接词，判断从句类型', '翻译时先主干后修饰，符合中文语序', '坚持拆真题句，比看语法书有效'] },
+      { icon: '✍️', title: '作文模板积累法', when: '9月起', steps: ['分类整理：图表/图画/话题各准备框架', '背万能句型，但组合成自己的模板', '每周动手写1-2篇，不能只看不练', '写完找人/AI批改，重点看逻辑和语法错误'] },
+      { icon: '🤖', title: 'AI辅助学习', when: '随时', ai: true, steps: ['长难句看不懂：发给AI，让它拆分结构并逐段翻译', '作文写完：让AI批改，指出语法错误和逻辑问题', '让AI解释某个熟词僻义在真题中的用法', '阅读错题：让AI分析干扰项为什么错'] }
+    ],
     phases: [
       { name: '词汇积累', time: '现在-持续', duration: '贯穿全程',
         goals: ['掌握5500考研核心词汇', '熟悉高频词组和搭配', '能够识别熟词僻义'],
@@ -234,7 +256,7 @@ const studyMethods = {
     resources: [
       { type: '词汇', items: ['考研英语大纲词汇', '恋练有词', '红宝书'] },
       { type: '真题', items: ['《考研真相》', '《黄皮书》', '历年真题（2005-2026）'] },
-      { type: '阅读', items: ['唐迟阅读逻辑', '何凯文长难句'] },
+      { type: '阅读', items: ['唐迟《阅读的逻辑》', '真题阅读手译本'] },
       { type: '写作', items: ['王江涛高分写作', '潘赟九宫格写作'] },
       { type: '语法', items: ['田静句句真研', '刘晓艳语法长难句'] }
     ],
@@ -265,6 +287,12 @@ const studyMethods = {
       { title: '肖秀荣体系为核心', desc: '肖秀荣的书籍和押题是核心必须重视。肖四肖八是神书，大题必须背。', star: '⭐⭐⭐⭐⭐' },
       { title: '时政不可忽视', desc: '时政占16分且与其他科目结合考查，关注全年热点。', star: '⭐⭐⭐⭐' }
     ],
+    toolkit: [
+      { icon: '✅', title: '选择题刷题法', when: '每天1小时', steps: ['听一节徐涛课，立刻刷肖1000对应章节', '错题及时订正，标记原因（不会/粗心/理解偏差）', '多选题是拉分王，宁可慢一点也要想全', '《1000题》至少刷2-3遍，错题反复做'] },
+      { icon: '🗂️', title: '易混点整理法', when: '每章结束', steps: ['整理各种"第一次"/"根本"/"核心"/"本质"类表述', '对比记忆：如"根本原因"vs"直接原因"', '马原的哲学概念和政治经济学要真正理解', '做成卡片或用Anki，定期快速过'] },
+      { icon: '📕', title: '肖四背诵法', when: '12月', steps: ['肖四大题必须全部背下来，这是神书', '背诵有技巧：理解逻辑→抓关键词→分点记忆', '不要死记硬背，要能结合材料展开', '最后两周全力背，配合腿姐冲刺手册'] },
+      { icon: '🤖', title: 'AI辅助学习', when: '理解困难时', ai: true, steps: ['马原概念抽象：让AI用例子讲清楚（如"用商品讲价值规律"）', '让AI帮你梳理某段历史的时间线和事件联系', '时政热点：让AI总结全年大事及可能考点', '让AI出选择题变式，检验易混点是否分清'] }
+    ],
     phases: [
       { name: '前期了解', time: '现在-2026.6', duration: '可选',
         goals: ['了解政治考试基本框架', '关注时事热点'],
@@ -291,7 +319,8 @@ const studyMethods = {
       { name: '肖秀荣', style: '政治权威，押题准确，书籍必备', rating: '⭐⭐⭐⭐⭐', bestFor: '全程核心' },
       { name: '徐涛', style: '讲课生动，马原讲得好', rating: '⭐⭐⭐⭐⭐', bestFor: '基础阶段' },
       { name: '腿姐', style: '技巧性强，冲刺背诵手册好用', rating: '⭐⭐⭐⭐⭐', bestFor: '强化冲刺' },
-      { name: '米鹏', style: '选择题讲得好', rating: '⭐⭐⭐⭐', bestFor: '选择题专项' }
+      { name: '米鹏', style: '选择题讲得好', rating: '⭐⭐⭐⭐', bestFor: '选择题专项' },
+      { name: '空卡空卡空空卡', style: 'B站政治带背UP主，肖四肖八带背口诀好用，冲刺期必备', rating: '⭐⭐⭐⭐⭐', bestFor: '冲刺带背' }
     ],
     commonMistakes: [
       { mistake: '开始太早', consequence: '前期投入产出比低，后期忘记', solution: '7月开始即可' },
@@ -328,6 +357,13 @@ const studyMethods = {
       { title: '即时反馈', desc: '把每日任务写在纸面上，完成一项用力划掉。这种视觉化反馈比任何电子打卡都踏实，是你每天需要的"进度条"。', star: '⭐⭐⭐⭐' },
       { title: '交叉复习', desc: '学不进去这科就换那科。用换科目打破厌学情绪，避免长时间集中在同一门课上导致疲劳和效率下降。', star: '⭐⭐⭐⭐' }
     ],
+    toolkit: [
+      { icon: '🗣️', title: '费曼学习法（通用）', when: '学完任何知识点', steps: ['第一步：拿出一张白纸，写下你要讲的概念', '第二步：假装教给一个完全不懂的人，用大白话讲', '第三步：讲卡壳的地方就是漏洞，回去重学', '第四步：简化语言、打比方，直到能流畅讲完', '检验标准：外行能听懂=你真懂了'] },
+      { icon: '📆', title: '间隔重复（Anki法）', when: '对抗遗忘', steps: ['遗忘规律：学完1天后忘70%，必须及时复习', '复习节点：次日→3天后→1周后→2周后', '用Anki/墨墨等工具自动安排复习卡片', '把易混点、公式、单词做成卡片，碎片时间刷'] },
+      { icon: '🍅', title: '番茄工作法', when: '难以专注时', steps: ['25分钟专注+5分钟休息，或45/15节奏', '番茄钟内手机放远，只做当前一件事', '每完成一个番茄打个勾，积累成就感', '状态好就连续做，状态差就只做1个番茄'] },
+      { icon: '🗺️', title: '思维导图法', when: '建立体系', steps: ['学完一章合上书凭记忆画框架', '画不出=没掌握，回去补', '把知识点间的逻辑关系画出来', '考前用导图快速过完整体系'] },
+      { icon: '🤖', title: 'AI辅助学习', when: '全流程', ai: true, steps: ['把AI当费曼听众：你讲给它听，让它挑毛病', '概念不懂：让AI用生活例子和类比解释', '让AI出变式题检验掌握程度', '让AI帮你总结一章的重点和易错点', '注意：AI是助手不是拐杖，先自己想再问'] }
+    ],
     antiProcrastination: [
       { title: '🔥 为什么会拖延（认清根源）',
         items: ['畏难心理：题目难、知识点不会，害怕做错，干脆逃避不做', '目标太大：一想到一堆任务，压力爆棚，无从下手', '完美主义：宁愿不开始也不愿做得不够好', '反馈缺失：努力了但看不到进步，动力消失', '环境诱惑：手机、短视频、游戏触手可及'] },
@@ -348,7 +384,8 @@ const studyMethods = {
     ],
     resources: [
       { type: '时间管理工具', items: ['番茄TODO / Forest（专注计时）', '滴答清单（任务管理）', '手机锁盒 / 专注模式（物理隔断）'] },
-      { type: '高效学习方法', items: ['费曼学习法：学完给别人讲一遍', '间隔重复：次日→3天后→1周后复习', '思维导图：每章学完画知识框架'] },
+      { type: '记忆与复习', items: ['Anki（间隔重复卡片，可自制题库）', '墨墨背单词 / 不背单词（英语词汇）', 'XMind / 幕布（思维导图）'] },
+      { type: 'AI学习助手', items: ['AI讲解概念：让它用生活例子解释难点', 'AI当费曼听众：你讲它挑错', 'AI出变式题：检验是否真掌握', 'AI批改作文 / 讲解错题思路'] },
       { type: '抗拖延心法', items: ['5分钟启动法：先做再说', '任务最小化：小到不需要意志力', '固定时间固定地点：形成条件反射', '学习搭子互相监督'] }
     ]
   }
@@ -506,6 +543,28 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
               </div>
               <p>{{ p.desc }}</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 方法论工具箱 -->
+      <section v-if="cm.toolkit" class="card">
+        <div class="card-head">
+          <h2>方法论工具箱</h2>
+          <span class="head-note">{{ cm.toolkit.length }} 个方法 · 可直接套用</span>
+        </div>
+        <div class="toolkit-grid">
+          <div v-for="(tk, ti) in (cm.toolkit as any[])" :key="ti" class="toolkit-card" :class="{ 'tk-ai': tk.ai }">
+            <div class="tk-head">
+              <span class="tk-icon">{{ tk.icon }}</span>
+              <div class="tk-title-block">
+                <strong>{{ tk.title }}</strong>
+                <span class="tk-when">适用 · {{ tk.when }}</span>
+              </div>
+            </div>
+            <ol class="tk-steps">
+              <li v-for="(s, si) in tk.steps" :key="si">{{ s }}</li>
+            </ol>
           </div>
         </div>
       </section>
@@ -676,6 +735,9 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
   display: flex;
   flex-direction: column;
   gap: 18px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* ==================== ① 作战手册头 ==================== */
@@ -795,12 +857,17 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
   border-radius: 14px;
   box-shadow: 0 4px 16px rgba(22, 52, 92, 0.08);
   overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -webkit-tap-highlight-color: transparent;
 }
+.tab-rail::-webkit-scrollbar { display: none; }
 .tab {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
+  scroll-snap-align: start;
   padding: 9px 18px;
   border: none;
   border-bottom: 3px solid transparent;
@@ -989,6 +1056,30 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
 .p-top strong { font-size: 1.02rem; color: var(--ink); }
 .p-star { font-size: 0.8rem; flex-shrink: 0; }
 .p-body p { margin: 0; font-size: 0.9rem; line-height: 1.7; color: var(--body); }
+
+/* ==================== 方法论工具箱 ==================== */
+.toolkit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.toolkit-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.toolkit-card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(22, 52, 92, 0.09); }
+.toolkit-card.tk-ai {
+  background: linear-gradient(160deg, #f0f7ff, #e9f1fd);
+  border-color: #c9ddf6;
+}
+.toolkit-card.tk-ai:hover { box-shadow: 0 6px 16px rgba(64, 130, 226, 0.14); }
+.tk-head { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+.tk-icon { font-size: 1.55rem; line-height: 1.2; flex-shrink: 0; }
+.tk-title-block { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.tk-title-block strong { font-size: 1rem; color: var(--ink); }
+.tk-when { font-size: 0.72rem; color: var(--muted); font-family: var(--font-mono); letter-spacing: 0.5px; }
+.tk-steps { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 7px; }
+.tk-steps li { font-size: 0.86rem; line-height: 1.65; color: var(--body); }
+.tk-steps li::marker { color: var(--gold); font-weight: 700; font-family: var(--font-display); }
 
 /* ==================== 阶段时间轴（手风琴） ==================== */
 .timeline { display: flex; flex-direction: column; gap: 12px; }
@@ -1212,16 +1303,48 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
 }
 @media (max-width: 860px) {
   .battle-actions, .battle-rhythm { grid-template-columns: 1fr; }
-  .mistake-grid, .anti-grid { grid-template-columns: 1fr; }
+  .mistake-grid, .anti-grid, .toolkit-grid { grid-template-columns: 1fr; }
   .hero-stats { width: 100%; justify-content: flex-start; }
+  .hero { padding: 28px 24px 22px; }
+  .card { padding: 20px 18px; }
+  .battle { padding: 22px 20px; }
 }
 @media (max-width: 600px) {
-  .methods { padding: 14px 12px 40px; }
-  .hero { padding: 26px 22px; }
-  .phase-body { padding-left: 20px; }
+  .methods { padding: 14px 12px 40px; gap: 14px; }
+  .content { gap: 14px; }
+  .hero { padding: 24px 18px 20px; border-radius: 14px; }
+  .hero-top { gap: 18px; }
+  .hero-stats { gap: 18px; }
+  .stat-num { font-size: 2.2rem; }
+  .hero-motto { font-size: 0.85rem; margin-top: 16px; padding-top: 12px; }
+  .tab-rail { padding: 8px 10px; gap: 6px; border-radius: 12px; }
+  .tab { padding: 8px 14px; font-size: 0.86rem; }
+  .card { padding: 18px 15px; border-radius: 14px; }
+  .card-head { margin-bottom: 16px; }
+  .card-head h2 { font-size: 1.08rem; }
+  .battle { padding: 20px 16px; }
+  .battle-title h2 { font-size: 1.2rem; }
+  .battle-focus { font-size: 0.95rem; padding: 10px 14px; }
+  .phase-head { padding: 13px 14px; gap: 9px; }
+  .phase-body { padding: 4px 16px 16px 20px; }
   .phase-time { display: none; }
-  .principle { gap: 12px; }
+  .principle { gap: 12px; padding: 14px 14px; }
   .p-num { font-size: 1.8rem; }
+  .tk-steps { padding-left: 16px; }
+  .res-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 400px) {
+  .methods { padding: 12px 10px 36px; }
+  .hero { padding: 20px 15px 18px; }
+  .hero-title { letter-spacing: 1px; }
+  .stat-num { font-size: 1.9rem; }
+  .tab { padding: 7px 11px; font-size: 0.82rem; gap: 6px; }
+  .tab-icon { font-size: 1rem; }
+  .card { padding: 16px 13px; }
+  .action, .rhythm { padding: 12px 13px; }
+  .principle { padding: 12px 12px; }
+  .p-top { flex-wrap: wrap; }
+  .level { flex-direction: column; gap: 8px; }
 }
 
 /* 动效可访问性 */
