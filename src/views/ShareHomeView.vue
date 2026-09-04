@@ -1,7 +1,32 @@
 <script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+
+// ===== 每日一句 · 励志语录轮播 =====
+const quotes = [
+  '你不需要很厉害才能开始，但你需要开始才能很厉害。',
+  '关关难过关关过，前路漫漫亦灿灿。',
+  '把书读薄，把题做透，把心稳住。',
+  '所谓运气，不过是你的努力刚好碰上了准备。',
+  '当坚冰还盖着北海，你要做怒放的梅花。',
+  '慢慢来，比较快；稳住，就是最大的效率。',
+  '你走的每一步都算数，今天的坚持是明天的底气。',
+  '考研这场黑屋子里的洗衣服，穿上身的那一刻，你会感谢现在没放弃的自己。'
+]
+const qIdx = ref(0)
+const qVisible = ref(true)
+let qTimer: ReturnType<typeof setInterval> | null = null
+function rotateQuote() {
+  qVisible.value = false
+  setTimeout(() => {
+    qIdx.value = (qIdx.value + 1) % quotes.length
+    qVisible.value = true
+  }, 450)
+}
+onMounted(() => { qTimer = setInterval(rotateQuote, 7000) })
+onBeforeUnmount(() => { if (qTimer) clearInterval(qTimer) })
 
 const modules = [
   {
@@ -86,6 +111,13 @@ function go(route: string) {
         <p class="hero-sub">数学一 · 408 计算机 · 学习方法 · 院校数据 —— 知识点整理与备考参考</p>
       </div>
     </header>
+
+    <section class="daily-quote" :class="{ 'quote-hide': !qVisible }">
+      <span class="dq-label">每日一句</span>
+      <span class="dq-mark">“</span>
+      <span class="dq-text">{{ quotes[qIdx] }}</span>
+      <span class="dq-mark dq-mark-end">”</span>
+    </section>
 
     <section class="module-grid">
       <div
@@ -179,6 +211,50 @@ function go(route: string) {
   line-height: 1.7;
 }
 
+.daily-quote {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(100deg, #fffdf5 0%, #fff 60%);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: 12px;
+  padding: 16px 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 2px 12px rgba(13, 33, 55, 0.05);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.daily-quote.quote-hide {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+.dq-label {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: #8a6d1f;
+  background: rgba(255, 197, 61, 0.16);
+  border: 1px solid rgba(255, 197, 61, 0.4);
+  border-radius: 999px;
+  padding: 3px 12px;
+  white-space: nowrap;
+}
+.dq-mark {
+  color: var(--gold);
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.dq-mark-end { transform: translateY(0.35rem); }
+.dq-text {
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
 .module-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -258,6 +334,12 @@ function go(route: string) {
   .hero {
     padding: 32px 22px 28px;
   }
+  .daily-quote {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 16px;
+  }
+  .dq-text { font-size: 0.94rem; }
   .module-grid {
     grid-template-columns: 1fr;
   }
