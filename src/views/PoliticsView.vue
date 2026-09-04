@@ -62,7 +62,7 @@ const stages = [
       <div class="hero-grid"></div>
       <div class="hero-glow"></div>
       <div class="hero-inner">
-        <span class="hero-kicker">POLITICS · 政治 · 目标70+</span>
+        <span class="hero-kicker">POLITICS · 政治</span>
         <h1 class="hero-title">政治<span class="gold">作战室</span></h1>
         <p class="hero-sub">路线图 · 知识框架 · 背诵卡片 · 真题演练 —— 一站到位</p>
       </div>

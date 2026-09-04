@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useTodayStatusStore } from '@/stores/todayStatus'
-
-const store = useTodayStatusStore()
 
 // ---------- 科目页签（颜色与全站 store 保持一致） ----------
 const subjectTabs = [
@@ -464,13 +461,6 @@ const studyMethods = {
       { who: '26哈深计专419·408单科135', line: '「当坚冰还盖着北海的时候，我看到了怒放的梅花！」——最难的那段路，恰恰离春天最近。' },
       { who: '26哈深计专419（去焦虑）', line: '「初试学够约1600h足以拿下华五。别被『模拟哥』『进度哥』带节奏——比的是吸收了多少，不是刷了几套卷。」' }
     ],
-    milestones: [
-      '计组93道错题一刷全部过完，背诵手册已建成（09-01）',
-      '数学16年真题12道完成首轮二刷，多道独立过关',
-      '数学口诀库 + 每日公式背诵清单已在跑',
-      '英语单词过完6轮底子，真题精读计划已启动',
-      '四科9月配比排定，政治定于9/5启动，没再往后拖'
-    ],
     commonMistakes: [
       { mistake: '状态没调好就不开始', consequence: '越想越慌，一整天废掉', solution: '带着情绪先做5分钟，前台进程不关' },
       { mistake: '把焦虑当"计划失败的信号"', consequence: '体感差就想推翻既定安排', solution: '焦虑是正常反应；先做睡眠体检再判断' },
@@ -488,15 +478,6 @@ const studyMethods = {
 // ---------- 当前科目 ----------
 const activeSubject = ref('math')
 const cm = computed(() => (studyMethods as any)[activeSubject.value])
-
-// ---------- 实时数据（倒计时 / 各科进度） ----------
-const daysToExam = computed(() => store.daysToExam)
-const overallPrep = computed(() => store.overallPrep.actual)
-const progressMap = computed(() => {
-  const m: Record<string, number> = {}
-  store.plans.forEach((p: any) => { m[p.key] = Math.round((p.completedUnits / p.totalUnits) * 100) })
-  return m
-})
 
 // ---------- 方法论座右铭轮换 ----------
 const mottos = [
@@ -525,7 +506,6 @@ const switchSubject = (key: string) => {
 }
 
 onMounted(() => {
-  store.load()
   mottoTimer = setInterval(() => {
     mottoIdx.value = (mottoIdx.value + 1) % mottos.length
   }, 6000)
@@ -541,23 +521,8 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
       <div class="hero-glow"></div>
       <div class="hero-top">
         <div class="hero-title-block">
-          <span class="hero-kicker">STUDY PLAYBOOK · 27考研 · 浙大海宁</span>
+          <span class="hero-kicker">STUDY PLAYBOOK · 备考方法论</span>
           <h1 class="hero-title">学习方法<span class="gold">作战手册</span></h1>
-          <div class="hero-phase">
-            <span class="phase-pulse"></span>
-            当前阶段 · 强化期（7-9月）
-          </div>
-        </div>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <span class="stat-num">{{ daysToExam }}</span>
-            <span class="stat-label">距初试（天）</span>
-          </div>
-          <div class="hero-divider"></div>
-          <div class="hero-stat">
-            <span class="stat-num">{{ overallPrep }}<i>%</i></span>
-            <span class="stat-label">整体备考进度</span>
-          </div>
         </div>
       </div>
       <div class="hero-motto">
@@ -579,7 +544,6 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
       >
         <span class="tab-icon">{{ t.icon }}</span>
         <span class="tab-label">{{ t.label }}</span>
-        <span v-if="progressMap[t.key] !== undefined" class="tab-prog">{{ progressMap[t.key] }}%</span>
       </button>
     </nav>
 
@@ -770,17 +734,6 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
             </ul>
           </div>
         </div>
-      </section>
-
-      <section v-if="cm.milestones" class="card milestone-card">
-        <div class="card-head">
-          <h2>你已经走到的位置</h2>
-          <span class="head-note">反驳"我什么都没做"</span>
-        </div>
-        <p class="ms-intro">焦虑时大脑会抹掉你的进度。下面是你已完成的真实里程碑，慌了先看这里。</p>
-        <ul class="ms-list">
-          <li v-for="(m, mi) in (cm.milestones as any[])" :key="mi"><span class="ms-check">✓</span>{{ m }}</li>
-        </ul>
       </section>
 
       <section v-if="cm.inspiration" class="card inspire-card">
