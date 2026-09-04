@@ -1,10 +1,44 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import KnowledgeStructure from '@/components/KnowledgeStructure.vue'
 import FeynmanLearning from '@/components/FeynmanLearning.vue'
 import ExamFrequencyMap from '@/components/ExamFrequencyMap.vue'
 
 const activeTab = ref('knowledge')
+
+const subjects = [
+  {
+    icon: '🧮',
+    name: '数据结构',
+    desc: '线性表 · 树 · 图 · 查找 · 排序，算法设计与复杂度分析',
+    meta: '47 分重点',
+    route: '/cs408/datastructure',
+    color: '#409EFF'
+  },
+  {
+    icon: '💾',
+    name: '计算机组成原理',
+    desc: '数据表示 · 存储系统 · 指令系统 · CPU · 总线 · I/O',
+    meta: '四大章节核心',
+    route: '/cs408/composition',
+    color: '#67C23A'
+  },
+  {
+    icon: '🖥️',
+    name: '操作系统',
+    desc: '进程管理 · 内存管理 · 文件管理 · 输入输出管理',
+    meta: '与计组强关联',
+    route: '/cs408/os',
+    color: '#E6A23C'
+  },
+  {
+    icon: '🌐',
+    name: '计算机网络',
+    desc: '物理层 · 数据链路 · 网络层 · 传输层 · 应用层',
+    meta: '协议栈体系',
+    route: '/cs408/network',
+    color: '#F56C6C'
+  }
+]
 </script>
 
 <template>
@@ -23,8 +57,25 @@ const activeTab = ref('knowledge')
       <el-tabs v-model="activeTab" class="cs408-tabs">
         <el-tab-pane label="知识点梳理" name="knowledge">
           <div class="knowledge-section">
-            <!-- 详细知识点结构 -->
-            <KnowledgeStructure subject="cs408" />
+            <!-- 四门课程知识点导航：点击进入对应科目的完整知识体系页 -->
+            <p class="subject-lead">选择一门课程，查看完整的章节知识点、思维导图与考点梳理。</p>
+            <div class="subject-grid">
+              <router-link
+                v-for="s in subjects"
+                :key="s.route"
+                class="subject-card"
+                :to="s.route"
+                :style="{ '--accent': s.color }"
+              >
+                <div class="sc-icon">{{ s.icon }}</div>
+                <div class="sc-body">
+                  <h3>{{ s.name }}</h3>
+                  <p>{{ s.desc }}</p>
+                  <span class="sc-meta">{{ s.meta }}</span>
+                </div>
+                <div class="sc-arrow">→</div>
+              </router-link>
+            </div>
           </div>
         </el-tab-pane>
 
@@ -161,6 +212,77 @@ const activeTab = ref('knowledge')
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+.subject-lead {
+  margin: 0;
+  font-size: 0.98rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+}
+.subject-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+  padding: 22px 20px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 12px rgba(13, 33, 55, 0.05);
+}
+.subject-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(13, 33, 55, 0.12);
+}
+.sc-icon {
+  font-size: 1.9rem;
+  line-height: 1;
+  flex: none;
+}
+.sc-body {
+  flex: 1;
+  min-width: 0;
+}
+.sc-body h3 {
+  margin: 0 0 6px;
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.sc-body p {
+  margin: 0 0 10px;
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.sc-meta {
+  display: inline-block;
+  font-size: 0.72rem;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, #fff);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, #fff);
+  border-radius: 999px;
+  padding: 2px 10px;
+  letter-spacing: 0.03em;
+}
+.sc-arrow {
+  flex: none;
+  color: #c3cede;
+  font-size: 1.2rem;
+  align-self: center;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.subject-card:hover .sc-arrow {
+  transform: translateX(4px);
+  color: var(--accent);
 }
 
 .knowledge-illustration {

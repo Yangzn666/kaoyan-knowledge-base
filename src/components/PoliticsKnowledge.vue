@@ -36,7 +36,7 @@ const loadSection = async (id: string) => {
   }
   loading.value = true
   try {
-    const res = await fetch(`/data/politics/${section.file}.md`)
+    const res = await fetch(`${import.meta.env.BASE_URL}data/politics/${section.file}.md`)
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const text = await res.text()
     const html = md.render(text)
