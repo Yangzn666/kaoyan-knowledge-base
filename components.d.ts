@@ -48,6 +48,8 @@ declare module 'vue' {
     NetworkChapterNav: typeof import('./src/components/NetworkChapterNav.vue')['default']
     OSChapterNav: typeof import('./src/components/OSChapterNav.vue')['default']
     OSMindMapView: typeof import('./src/components/OSMindMapView.vue')['default']
+    PoliticsKnowledge: typeof import('./src/components/PoliticsKnowledge.vue')['default']
+    PoliticsReciteCards: typeof import('./src/components/PoliticsReciteCards.vue')['default']
     QuickCards: typeof import('./src/components/QuickCards.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

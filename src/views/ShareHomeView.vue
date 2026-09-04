@@ -21,6 +21,22 @@ const modules = [
     color: '#0e7490'
   },
   {
+    icon: '🧭',
+    title: '数学专题指南',
+    desc: '高频题型方法专题 + 真题弱点诊断：曲面积分、参数估计、级数、矩阵方程等的核心方法与易错点',
+    tag: '题型 / 方法',
+    route: '/math/guide',
+    color: '#1d4ed8'
+  },
+  {
+    icon: '🌳',
+    title: '数学技能树',
+    desc: '数学题型掌握度可视化图谱，一眼看清各模块的熟练度与待突破节点',
+    tag: '掌握度图谱',
+    route: '/skilltree',
+    color: '#059669'
+  },
+  {
     icon: '💻',
     title: '408 计算机',
     desc: '数据结构 · 组成原理 · 操作系统 · 计算机网络，知识点梳理 + 考频地图 + 费曼学习法',
@@ -35,6 +51,14 @@ const modules = [
     tag: '方法论',
     route: '/study-methods',
     color: '#7c3aed'
+  },
+  {
+    icon: '📕',
+    title: '政治框架',
+    desc: '考研政治五模块知识框架（马原 · 毛中特 · 新思想 · 史纲 · 思修法基）+ 背诵卡片速记',
+    tag: '框架 / 背诵',
+    route: '/politics',
+    color: '#dc2626'
   },
   {
     icon: '🏫',

@@ -11,6 +11,9 @@ const FeynmanLearning = () => import('@/components/FeynmanLearning.vue')
 const MathView = () => import('@/views/MathView.vue')
 const MathQuickCardsView = () => import('@/views/MathQuickCardsView.vue')
 const UniversitiesView = () => import('@/views/UniversitiesView.vue')
+const MathTopicGuideView = () => import('@/views/MathTopicGuideView.vue')
+const SkillTreeView = () => import('@/views/SkillTreeView.vue')
+const PoliticsView = () => import('@/views/PoliticsView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -95,10 +98,28 @@ const router = createRouter({
       meta: { title: '速查卡片' }
     },
     {
+      path: '/math/guide',
+      name: 'math-guide',
+      component: MathTopicGuideView,
+      meta: { title: '专题指南' }
+    },
+    {
       path: '/universities',
       name: 'universities',
       component: UniversitiesView,
       meta: { title: '院校查询' }
+    },
+    {
+      path: '/politics',
+      name: 'politics',
+      component: PoliticsView,
+      meta: { title: '政治框架' }
+    },
+    {
+      path: '/skilltree',
+      name: 'skilltree',
+      component: SkillTreeView,
+      meta: { title: '技能树' }
     },
     // 兼容旧链接：未匹配路由重定向到首页
     {
