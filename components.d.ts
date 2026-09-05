@@ -51,6 +51,7 @@ declare module 'vue' {
     PoliticsKnowledge: typeof import('./src/components/PoliticsKnowledge.vue')['default']
     PoliticsReciteCards: typeof import('./src/components/PoliticsReciteCards.vue')['default']
     QuickCards: typeof import('./src/components/QuickCards.vue')['default']
+    ReadingPractice: typeof import('./src/components/ReadingPractice.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

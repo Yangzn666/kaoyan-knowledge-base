@@ -14,6 +14,7 @@ const UniversitiesView = () => import('@/views/UniversitiesView.vue')
 const MathTopicGuideView = () => import('@/views/MathTopicGuideView.vue')
 const SkillTreeView = () => import('@/views/SkillTreeView.vue')
 const PoliticsView = () => import('@/views/PoliticsView.vue')
+const EnglishView = () => import('@/views/EnglishView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -114,6 +115,12 @@ const router = createRouter({
       name: 'politics',
       component: PoliticsView,
       meta: { title: '政治框架' }
+    },
+    {
+      path: '/english',
+      name: 'english',
+      component: EnglishView,
+      meta: { title: '英语真题精读' }
     },
     {
       path: '/skilltree',

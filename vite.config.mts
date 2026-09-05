@@ -6,11 +6,45 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
+import { execFileSync } from 'child_process'
 
 // 生产环境部署在 GitHub Pages 子路径下，PWA 的 scope/start_url 必须与 base 一致，
 // 否则手机安装后会把应用打开到站点根目录（/）导致 404
 const isProd = process.env.NODE_ENV === 'production'
 const base = isProd ? '/kaoyan-knowledge-base/' : '/'
+
+// —— 版本时间戳（构建时注入，用于页脚区分版本）——
+// 内容最近更新 = 最后一次 git 提交时间（GitHub Actions 在推送的 commit 上构建，故准确）
+function readGitUpdated(): string {
+  try {
+    return execFileSync(
+      'git',
+      ['log', '-1', '--format=%cd', '--date=format:%Y-%m-%d %H:%M'],
+      {
+        encoding: 'utf8',
+        cwd: fileURLToPath(new URL('./', import.meta.url))
+      }
+    ).trim()
+  } catch {
+    return ''
+  }
+}
+// 本次构建时间（东八区，失败退回 ISO）
+function buildStamp(): string {
+  try {
+    return new Intl.DateTimeFormat('zh-CN', {
+      timeZone: 'Asia/Shanghai',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', hour12: false
+    }).format(new Date()).replace(/\//g, '-')
+  } catch {
+    return new Date().toISOString().slice(0, 16).replace('T', ' ')
+  }
+}
+const gitUpdated = readGitUpdated()
+const builtAt = buildStamp()
+// 版本串：优先用最后提交日期，退化到构建日期
+const lastUpdated = gitUpdated || builtAt
 
 export default defineConfig({
   plugins: [
@@ -62,7 +96,8 @@ export default defineConfig({
           '**/wardley-*.js',
           '**/MindMapView-*.js',
           '**/sequenceDiagram-*.js',
-          '**/architectureDiagram-*.js'
+          '**/architectureDiagram-*.js',
+          '**/data/english/reading-questions.json'
         ],
         // 运行时缓存策略
         runtimeCaching: [
@@ -98,6 +133,10 @@ export default defineConfig({
   ],
   // 根据环境动态设置base路径（与 PWA scope/start_url 保持一致）
   base,
+  define: {
+    __LAST_UPDATED__: JSON.stringify(lastUpdated),
+    __BUILD_TIME__: JSON.stringify(builtAt)
+  },
   resolve: {
     alias: {
       '@': resolve(fileURLToPath(new URL('./', import.meta.url)), 'src')
