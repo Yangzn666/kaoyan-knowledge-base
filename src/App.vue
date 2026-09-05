@@ -52,6 +52,10 @@
 
       <footer class="footer">
         <p>考研知识库 · 知识点整理与备考参考 · 仅供学习交流</p>
+        <p class="footer-version">
+          <span class="fv-updated">🕒 最近更新 {{ lastUpdated }}</span>
+          <span class="fv-build">构建 {{ builtAt }}</span>
+        </p>
       </footer>
     </div>
   </div>
@@ -60,6 +64,10 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+
+// 构建时注入的版本时间戳（见 vite.config.mts define）
+const lastUpdated = __LAST_UPDATED__
+const builtAt = __BUILD_TIME__
 
 const isLoading = ref(true)
 const mobileMenuOpen = ref(false)
@@ -113,6 +121,18 @@ body {
   font-family: 'FZCuHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background: #f5f8fc;
   min-height: 100vh;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 全局移动端硬化：图片永不撑破窄屏；按钮/链接去掉 300ms 点击延迟 */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+button, a, .tab-pill, .module-card {
+  touch-action: manipulation;
 }
 
 .container {
@@ -415,6 +435,29 @@ body {
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   border-top: 2px solid rgba(255, 197, 61, 0.25);
+}
+
+.footer-version {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.fv-updated {
+  color: #ffc53d;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.fv-build {
+  color: #8ba3bd;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.7rem;
 }
 
 /* ===== 全局加载指示器 ===== */
